@@ -1,0 +1,11 @@
+{
+  "name": "mahjong-lib",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/WesleyLuk90/mahjong-lib.git",
+  "author": "Wesley Luk <wesleyluk@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "^2.8.0"
+  }
+}
