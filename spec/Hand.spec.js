@@ -8,11 +8,11 @@ describe('Hand', () => {
 
     it('should draw tiles', () => {
         const wall = jasmine.createSpyObj('wall', ['next']);
-        wall.next.and.returnValues(1,2,3,4,5,6);
+        wall.next.and.returnValues(1, 2, 3, 4, 5, 6);
 
         const hand = new Hand();
         hand.draw(wall, 5);
 
-        expect(hand.getTiles()).toEqual([1,2,3,4,5]);
+        expect(hand.getTiles()).toEqual([1, 2, 3, 4, 5]);
     });
 });
