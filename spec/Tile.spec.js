@@ -31,4 +31,12 @@ describe('Tile', () => {
         expect(new Tile(1, Tile.MANS).equals(Tile.EAST)).toBe(false);
         expect(new Tile(1, Tile.MANS).equals(new Tile(1, Tile.MANS))).toBe(true);
     });
+
+    it('should have a hash code', () => {
+        expect(new Tile(1, Tile.MANS).toHashCode()).toBe(0);
+        expect(new Tile(9, Tile.PINS).toHashCode()).toBe(17);
+        expect(new Tile(1, Tile.SOUS).toHashCode()).toBe(18);
+        expect(new Tile(1, Tile.HONORS).toHashCode()).toBe(27);
+        expect(new Tile(7, Tile.HONORS).toHashCode()).toBe(33);
+    });
 });
