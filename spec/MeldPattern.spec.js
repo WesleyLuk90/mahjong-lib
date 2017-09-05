@@ -83,4 +83,8 @@ describe('MeldPattern', () => {
             .add(Tile.man(1));
         expect(MeldPattern.PAIR.isCompatible(Tile.man(1), validPattern)).toBe(false);
     });
+
+    it('should convert to string', () => {
+        expect(MeldPattern.PAIR.toString()).toBe('PAIR');
+    });
 });

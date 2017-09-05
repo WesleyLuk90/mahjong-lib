@@ -46,4 +46,13 @@ describe('Tile', () => {
             expect(tile.toHashCode()).toEqual(hash);
         }
     });
+
+    it('should list all tiles', () => {
+        const all = Tile.all();
+        expect(all.length).toBe(Tile.MAX_TILE_HASH + 1);
+
+        for (let i = 0; i <= Tile.MAX_TILE_HASH; i++) {
+            expect(all[i].toHashCode()).toBe(i);
+        }
+    });
 });
