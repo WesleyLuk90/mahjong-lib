@@ -13,13 +13,13 @@ describe('Hand', () => {
         expect(hand.toString()).toBe('1 man, 1 sou, 2 sou');
     });
 
-    // it('should draw tiles', () => {
-    //     const wall = jasmine.createSpyObj('wall', ['next']);
-    //     wall.next.and.returnValues(1, 2, 3, 4, 5, 6);
+    it('should draw tiles', () => {
+        const wall = jasmine.createSpyObj('wall', ['next']);
+        wall.next.and.returnValues(Tile.man(5), Tile.man(6), Tile.man(7));
 
-    //     const hand = new Hand();
-    //     hand.draw(wall, 5);
+        const hand = new Hand([]);
+        hand.draw(wall, 3);
 
-    //     expect(hand.getTiles()).toEqual([1, 2, 3, 4, 5]);
-    // });
+        expect(hand).toEqual(new Hand([Tile.man(5), Tile.man(6), Tile.man(7)]));
+    });
 });
