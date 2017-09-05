@@ -39,4 +39,11 @@ describe('Tile', () => {
         expect(new Tile(1, Tile.HONORS).toHashCode()).toBe(27);
         expect(new Tile(7, Tile.HONORS).toHashCode()).toBe(33);
     });
+
+    it('hash code should work round trip', () => {
+        for (let hash = 0; hash <= Tile.MAX_TILE_HASH; hash++) {
+            const tile = Tile.fromHashCode(hash);
+            expect(tile.toHashCode()).toEqual(hash);
+        }
+    });
 });
