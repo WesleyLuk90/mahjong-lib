@@ -3,7 +3,7 @@ const Tile = require('../lib/Tile');
 const Hand = require('../lib/Hand');
 const PatternTally = require('../lib/PatternTally');
 
-fdescribe('PatternTally', () => {
+describe('PatternTally', () => {
     const testCases = [{
         tallys: [{
                 pattern: MeldPattern.CHI,

@@ -89,7 +89,7 @@ describe('MeldPattern', () => {
     });
 
     it('should get tiles', () => {
-        expect(MeldPattern.PAIR.getTiles(Tile.man(1))).toEqual([Tile.man(1), Tile.man(1), Tile.man(1)]);
+        expect(MeldPattern.PAIR.getTiles(Tile.man(1))).toEqual([Tile.man(1), Tile.man(1)]);
         expect(MeldPattern.LOWER_EDGE.getTiles(Tile.man(1))).toEqual([Tile.man(1), Tile.man(2)]);
     });
 });
