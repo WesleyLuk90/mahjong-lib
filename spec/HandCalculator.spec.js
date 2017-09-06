@@ -1,12 +1,25 @@
+const TileDecoder = require('../lib/TileDecoder');
 const HandCalculator = require('../lib/HandCalculator');
-const Tile = require('../lib/Tile');
 const Hand = require('../lib/Hand');
 
 describe('HandCalculator', () => {
-    it('should calculate shanten', () => {
-        const hand = new Hand([Tile.man(1), Tile.man(2), Tile.man(3), Tile.man(4), Tile.man(4)]);
-        const calc = new HandCalculator(hand);
-        const result = calc.calculate();
-        expect(result.getShanten()).toBe(-1);
+    const testCases = [{
+            hand: '469m115679p249s34z',
+            shanten: 3,
+        },
+        {
+            hand: '12344m',
+            shanten: -1,
+        }
+    ];
+
+    testCases.forEach((testCase) => {
+        it(`should calculate shanten ${testCase.hand} as ${testCase.shanten}`, () => {
+            const decoder = new TileDecoder();
+            const hand = new Hand(decoder.decode(testCase.hand));
+            const calc = new HandCalculator(hand);
+            const result = calc.calculate();
+            expect(result.getShanten()).toBe(testCase.shanten);
+        });
     });
 });

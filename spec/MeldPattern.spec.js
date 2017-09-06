@@ -88,6 +88,28 @@ describe('MeldPattern', () => {
         expect(MeldPattern.PAIR.toString()).toBe('PAIR');
     });
 
+    it('should remove from tally', () => {
+        const tally = new TileTally();
+        tally.add(Tile.man(1));
+        tally.add(Tile.man(2));
+        tally.add(Tile.man(3));
+        MeldPattern.MIDDLE.removeFromTally(Tile.man(1), tally);
+        expect(tally.getCount(Tile.man(1))).toBe(0);
+        expect(tally.getCount(Tile.man(2))).toBe(1);
+        expect(tally.getCount(Tile.man(3))).toBe(0);
+    });
+
+    it('should remove from tally with offset', () => {
+        const tally = new TileTally();
+        tally.add(Tile.man(1));
+        tally.add(Tile.man(2));
+        tally.add(Tile.man(3));
+        MeldPattern.LOWER_EDGE.removeFromTally(Tile.man(1), tally);
+        expect(tally.getCount(Tile.man(1))).toBe(0);
+        expect(tally.getCount(Tile.man(2))).toBe(0);
+        expect(tally.getCount(Tile.man(3))).toBe(1);
+    });
+
     it('should get tiles', () => {
         expect(MeldPattern.PAIR.getTiles(Tile.man(1))).toEqual([Tile.man(1), Tile.man(1)]);
         expect(MeldPattern.LOWER_EDGE.getTiles(Tile.man(1))).toEqual([Tile.man(1), Tile.man(2)]);
