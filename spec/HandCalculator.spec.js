@@ -1,3 +1,4 @@
+const util = require('util');
 const TileDecoder = require('../lib/TileDecoder');
 const HandCalculator = require('../lib/HandCalculator');
 const Hand = require('../lib/Hand');

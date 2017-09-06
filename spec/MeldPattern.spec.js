@@ -84,6 +84,21 @@ describe('MeldPattern', () => {
         expect(MeldPattern.PAIR.isCompatible(Tile.man(1), validPattern)).toBe(false);
     });
 
+    it('should not allow honor melds', () => {
+        const validPattern = new TileTally()
+            .add(Tile.honor(1))
+            .add(Tile.honor(1));
+        expect(MeldPattern.PAIR.isCompatible(Tile.honor(1), validPattern)).toBe(true);
+        const invalidPattern = new TileTally()
+            .add(Tile.honor(1))
+            .add(Tile.honor(2));
+        expect(MeldPattern.LOWER_EDGE.isCompatible(Tile.honor(1), invalidPattern)).toBe(false);
+        const invalidPattern2 = new TileTally()
+            .add(Tile.honor(3))
+            .add(Tile.honor(4));
+        expect(MeldPattern.TWO_SIDED.isCompatible(Tile.honor(3), invalidPattern2)).toBe(false);
+    });
+
     it('should convert to string', () => {
         expect(MeldPattern.PAIR.toString()).toBe('PAIR');
     });
