@@ -5,7 +5,6 @@ const PatternTally = require('../lib/PatternTally');
 
 fdescribe('PatternTally', () => {
     const testCases = [{
-        hand: new Hand([Tile.man(1), Tile.man(2), Tile.man(3), Tile.man(4), Tile.man(4)]),
         tallys: [{
                 pattern: MeldPattern.CHI,
                 tile: Tile.man(1)
@@ -17,7 +16,6 @@ fdescribe('PatternTally', () => {
         ],
         shanten: -1,
     }, {
-        hand: new Hand([Tile.man(1), Tile.man(2), Tile.man(3), Tile.man(4), Tile.RED]),
         tallys: [{
                 pattern: MeldPattern.CHI,
                 tile: Tile.man(1)
@@ -33,7 +31,6 @@ fdescribe('PatternTally', () => {
         ],
         shanten: 0,
     }, {
-        hand: new Hand([Tile.man(1), Tile.man(3), Tile.man(4), Tile.RED, Tile.man(9)]),
         tallys: [{
                 pattern: MeldPattern.SINGLE,
                 tile: Tile.man(1)
@@ -53,7 +50,6 @@ fdescribe('PatternTally', () => {
         ],
         shanten: 1,
     }, {
-        hand: new Hand([Tile.man(1), Tile.man(1), Tile.man(3), Tile.man(3), Tile.RED]),
         tallys: [{
                 pattern: MeldPattern.PAIR,
                 tile: Tile.man(1)
@@ -69,7 +65,6 @@ fdescribe('PatternTally', () => {
         ],
         shanten: 0,
     }, {
-        hand: new Hand([Tile.man(1), Tile.man(1), Tile.sou(3), Tile.sou(3), Tile.sou(6), Tile.sou(6), Tile.RED, Tile.GREEN]),
         tallys: [{
                 pattern: MeldPattern.PAIR,
                 tile: Tile.man(1)
@@ -92,10 +87,58 @@ fdescribe('PatternTally', () => {
             },
         ],
         shanten: 1,
+    }, {
+        tallys: [{
+            pattern: MeldPattern.PAIR,
+            tile: Tile.man(1),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.pin(6),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.pin(9),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.sou(3),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.sou(6),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.GREEN,
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.RED,
+        }, ],
+        shanten: -1,
+    }, {
+        tallys: [{
+            pattern: MeldPattern.PAIR,
+            tile: Tile.man(1),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.man(1),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.pin(2),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.pin(5),
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.GREEN,
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.WHITE,
+        }, {
+            pattern: MeldPattern.PAIR,
+            tile: Tile.RED,
+        }, ],
+        shanten: 1,
     }, ];
     testCases.forEach((testCase) => {
-        it(`should calculate shanten for ${testCase.hand.toString()}`, () => {
-            const hand = testCase.hand;
+        const hand = new Hand([].concat(...testCase.tallys.map(t => t.pattern.getTiles(t.tile))));
+        it(`should calculate shanten for ${hand.toString()}`, () => {
             const tally = new PatternTally(hand);
             testCase.tallys.forEach((t) => tally.add(t.pattern, t.tile));
 
