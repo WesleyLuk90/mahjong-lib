@@ -1,3 +1,4 @@
+const OptimizedDiscard = require('../lib/OptimizedDiscard');
 const DiscardOptimizer = require('../lib/DiscardOptimizer');
 const Tile = require('../lib/Tile');
 const Hand = require('../lib/Hand');
@@ -38,5 +39,21 @@ describe('DiscardOptimizer', () => {
         expect(souDiscard.getTotalDrawCount()).toEqual(6);
         expect(souDiscard.getDrawCount(Tile.pin(1))).toEqual(4);
         expect(souDiscard.getDrawCount(Tile.pin(4))).toEqual(2);
+    });
+
+    it('should get the best discard', () => {
+        const decoder = new TileDecoder();
+        const hand = new Hand(decoder.decode('2344p1s'));
+        const optimizer = new DiscardOptimizer(hand);
+        const discards = optimizer.getOptimalDiscards();
+
+        const pinDiscard = discards[0];
+        expect(pinDiscard.getTile()).toEqual(Tile.pin(4));
+
+
+        const souDiscard = discards[1];
+        expect(souDiscard.getTile()).toEqual(Tile.sou(1));
+
+        expect(OptimizedDiscard.getBest(discards)).toEqual([souDiscard]);
     });
 });
