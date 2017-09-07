@@ -14,4 +14,9 @@ describe('TileTally', () => {
         expect(tally.getCount(Tile.man(4))).toBe(1);
         expect(tally.getCount(Tile.man(3))).toBe(2);
     });
+
+    it('should generate all tiles', () => {
+        const tally = TileTally.allTiles();
+        expect(tally.getCount(Tile.man(5))).toBe(4);
+    });
 });
