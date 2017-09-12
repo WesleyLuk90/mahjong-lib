@@ -10,10 +10,10 @@ const INTERESTING_PATTERNS = [
     MeldPattern.PON,
     MeldPattern.CHI,
     MeldPattern.PAIR,
-    MeldPattern.MIDDLE,
-    MeldPattern.TWO_SIDED,
-    MeldPattern.LOWER_EDGE,
-    MeldPattern.UPPER_EDGE,
+    // MeldPattern.MIDDLE,
+    // MeldPattern.TWO_SIDED,
+    // MeldPattern.LOWER_EDGE,
+    // MeldPattern.UPPER_EDGE,
 ];
 
 function isInteresting(calculationResult, bestDiscards) {
